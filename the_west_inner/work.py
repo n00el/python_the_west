@@ -15,11 +15,12 @@ class Work:
 def work_task(handler:requests_handler,position_in_queue,work_object:Work,number_of_tasks=1):
     job_dict = {}
     for i in range(number_of_tasks):
-        job_dict[f"tasks[{position_in_queue}][jobId]"] = f"{work_object.job_id}",
-        job_dict[f"tasks[{position_in_queue}][x]"]= f"{work_object.x}",
-        job_dict[f"tasks[{position_in_queue}][y]"]= f"{work_object.y}",
-        job_dict[f"tasks[{position_in_queue}][duration]"] = f"{work_object.duration}",
-        job_dict[f"tasks[{position_in_queue}][taskType]"]= "job"
+        queue_position = position_in_queue + i
+        job_dict[f"tasks[{queue_position}][jobId]"] = f"{work_object.job_id}"
+        job_dict[f"tasks[{queue_position}][x]"] = f"{work_object.x}"
+        job_dict[f"tasks[{queue_position}][y]"] = f"{work_object.y}"
+        job_dict[f"tasks[{queue_position}][duration]"] = f"{work_object.duration}"
+        job_dict[f"tasks[{queue_position}][taskType]"] = "job"
     response = handler.post("task","add",payload=job_dict,use_h=True)
     return response
 def queue_work(handler,work_object:Work):
