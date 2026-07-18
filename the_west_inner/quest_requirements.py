@@ -2,7 +2,6 @@ import typing
 
 from the_west_inner.game_classes import Game_classes
 
-from matplotlib.pylab import solve
 #from automation_scripts.quest_solver_scripts.quest_requirement_data.quest_group_data import QuestGroupData
 
 
